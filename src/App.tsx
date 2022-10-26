@@ -1,24 +1,62 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC } from 'react';
+import { GAME_LEVELS } from './components/levels/levels';
+import './index.css'
 
-function App() {
+const App:FC = ():JSX.Element => {
+  
+  const level = GAME_LEVELS[0].trim().split('\n');
+
+  // console.log(level[0])
+  
+
   return (
+
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+      {level.map((row) => {
+      
+        return (
+          <div className='row'>{
+          row.split('').map(item => {
+            console.log(item)
+            if(item === "."){
+              return (
+                <div className='empty'>.</div>
+              )
+            } else if( item === '#'){
+              return (
+                <div className='wall'>#</div>
+              )
+            } else if( item === '+'){
+              return (
+                <div className='lava'>+</div>
+              )
+            } else if( item === '@'){
+              return (
+                <div className='player'>@</div>
+              )
+            } else if( item === 'o'){
+              return (
+                <div className='coin'>o</div>
+              )
+            } else if( item === '='){
+              return (
+                <div className='lava'>=</div>
+              )
+            }else if( item === 'v'){
+              return (
+                <div className='lava'>=</div>
+              )
+            }
+            return item
+          })
+          
+        }</div>
+
+        )
+      })}
+      </div>
+     
     </div>
   );
 }
